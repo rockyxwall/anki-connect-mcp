@@ -49,8 +49,8 @@ export interface ImageOcclusionUpdate {
  */
 export function extractImageFilename(fieldValue?: string): string | null {
     if (!fieldValue) return null;
-    const match = fieldValue.match(/src=["']?([^"'>\s]+)["']?/i);
-    return match ? match[1] : null;
+    const match = fieldValue.match(/src=["']([^"']+)["']/i) || fieldValue.match(/src=([^>\s]+)/i);
+    return match ? (match[1] || match[2]) : null;
 }
 
 /**
